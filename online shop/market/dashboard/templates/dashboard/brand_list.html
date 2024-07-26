@@ -1,0 +1,27 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Brand List{% endblock %}
+{% block content %}
+<h1>Brands</h1>
+<a href="{% url 'brand-create' %}" class="btn btn-primary mb-3">Add Brand</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for brand in object_list %}
+        <tr>
+            <td>{{ brand.name }}</td>
+            <td>{{ brand.description }}</td>
+            <td>
+                <a href="{% url 'brand-update' brand.pk %}" class="btn btn-info btn-sm">Edit</a>
+                <a href="{% url 'brand-delete' brand.pk %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'dashboard/base.html' %}
+{% block title %}Product List{% endblock %}
+{% block content %}
+<h1>Products</h1>
+<a href="{% url 'product-create' %}" class="btn btn-primary mb-3">Add Product</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Brand</th>
+            <th>Price</th>
+            <th>Stock</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in object_list %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.category }}</td>
+            <td>{{ product.brand }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.stock }}</td>
+            <td>
+                <a href="{% url 'product-update' product.pk %}" class="btn btn-info btn-sm">Edit</a>
+                <a href="{% url 'product-delete' product.pk %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
